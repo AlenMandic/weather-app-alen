@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+<link rel="manifest" href="./favicon/site.webmanifest">
+<link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+  <div class ="introduction" id="introduction">
+    <h3 id="main-introduction"></h3>
+    <div class="info_">
+      <div id="air_info" class="air"></div>
+      <div id="elevation_info" class="air">
+        <p id="introduction_elevation"></p>
+      </div>
+      <div id="population_info" class="air">
+        <p id="introduction_population" style="scale: 1.3"></p>
+      </div>
+    </div>
+    <div class="button">
+      <div>
+        <button id="default_button" tabindex="1">Set location as default</button>
+      </div>
+      <div>
+        <button id="map_button" tabindex="1">Show on map</button>
+      </div>
+      <div  id="github-div">
+        <a href="https://github.com/AlenMandic" tabindex="1" id="github-anchor" target="_blank">
+          <img src="./images/misc/github-mark.png" alt="Link to my GitHub." id="github-button">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="search-bar">
+    <form class="user-input">
+        <label for="city">Search cities to display weather</label>
+        <div class = "input_wrapper">
+          <input type="text" name="city" id="input" placeholder="Type in a city" autocomplete="off" tabindex="1">
+          <img class="location_img" id="location" src="./images/misc/gps.png" tabindex="0" role="button" type="button">
+        </div>
+        <p id="isTyping"></p>
+    </form>
+  </div>
+  <div class="city-cards" id="city-cards">
+  </div>
+</div>
+    <h2 style="color: rgb(70, 198, 133);" id="current_h2">Current conditions</h2>
+    <div class="current-conditions" id="current-conditions">
+      <div class="child" id="child_current_weathercode">
+        <p id="weathercode_current_text" style="scale: 1.2"></p>
+      </div>
+      <div class="child" id="child_current_temp">
+        <p id="current-temp"></p>
+      </div>
+      <div class="child" id="child_current_windspeed">
+        <p id="current-windspeed"></p>
+      </div>
+      <div class="child" id="child_current_humidity">
+        <p id="current-humidity"></p>
+      </div>
+      <div class="child" id="child_current_visibility">
+        <p id="current-visibility"></p>
+      </div>
+    </div>
+    <div class="current-conditions" id="current-video">
+      <video id="my-video" class="video-js" preload="auto" width="100%" height="100%" muted autoplay loop>
+        <source type="video/mp4">
+      </video>
+    </div>
+
+  <hr>
+  <hr>
+  <h2>3-day forecast</h2>
+  <!--Today data part one- Icon and Date -->
+    <div class="forecast" id="today_one">
+      <div class="child" id="child_today_date"></div>
+      <div class="child" id="child_today_weathercode">
+        <p id="weathercode_today_text" style="scale: 1.5"></p>
+      </div>
+      </div>
+  <!--Today data part two- Weather info -->
+
+    <div class="forecast" id="today_two">
+      <div class="child" id="child_today_minmax"></div>
+      <div class="child" id="child_today_precipitation"></div>
+      <div class="child" id="child_today_windspeed"></div>
+      <div class="child" id="child_today_sunrise"></div>
+      </div>
+    </div>
+
+   <!--Tomorow data part one- Icon and Date -->
+    <div class="forecast" id="tomorow_one">
+      <div class="child" id="child_tomorow_date"></div>
+      <div class="child" id="child_tomorow_weathercode">
+        <p id="weathercode_tomorow_text" style="scale: 1.5"></p>
+      </div>
+      </div>
+  <!--Tomorow data part two- Weather info-->
+  <div class="forecast" id="tomorow_two">
+    <div class="child" id="child_tomorow_minmax"></div>
+    <div class="child" id="child_tomorow_precipitation"></div>
+    <div class="child" id="child_tomorow_windspeed"></div>
+    <div class="child" id="child_tomorow_sunrise"></div>
+  </div>
+</div>
+ 
+  <!--Twodays data part one- Icon and Date -->
+    <div class="forecast" id="twodays_one">
+      <div class="child" id="child_twodays_date"></div>
+      <div class="child" id="child_twodays_weathercode">
+        <p id="weathercode_twodays_text" style="scale: 1.5"></p>
+      </div>
+      </div>
+  <!--Twodays data part two- Weather info -->
+  <div class="forecast" id="twodays_two">
+    <div class="child" id="child_twodays_minmax"></div>
+    <div class="child" id="child_twodays_precipitation"></div>
+    <div class="child" id="child_twodays_windspeed"></div>
+    <div class="child" id="child_twodays_sunrise"></div>
+  </div>
+</div>
+  <h2 id="hourly_title" style="color: rgb(0 240 118)"></h2>
+    <div class="hourly-box">
+      <span class="hourly_info hour">
+        <div class="hourly_info_child"><p>Time</p></div>
+        <div class="hourly_info_child"><p>Weather</p></div>
+        <div class="hourly_info_child" style="margin-left: 20px;"><p>Precipitation</p></div>
+        <div class="hourly_info_child"><p>Rainfall</p></div>
+        <div class="hourly_info_child"><p>Temp</p></div>
+        <div class="hourly_info_child"><p>Windspeed</p></div>
+      </span>
+      <span class="hour" id="current">
+        <div class="childhour" id="hour_1"></div>
+      </span>
+      <span class="hour" id="one">
+        <div class="childhour" id="hour_2"></div>
+      </span>
+      <span class="hour" id="two">
+        <div class="childhour" id="hour_3"></div>
+      </span>
+      <span class="hour" id="three">
+        <div class="childhour" id="hour_4"></div>
+      </span>
+      <span class="hour" id="four">
+        <div class="childhour" id="hour_5"></div>
+      </span>
+      <span class="hour" id="five">
+        <div class="childhour" id="hour_6"></div>
+      </span>
+      <span class="hour" id="six">
+        <div class="childhour" id="hour_7"></div>
+      </span>
+      <span class="hour" id="seven">
+        <div class="childhour" id="hour_8"></div>
+      </span>
+      <span class="hour" id="eight">
+        <div class="childhour" id="hour_9"></div>
+      </span>
+      <span class="hour" id="nine">
+        <div class="childhour" id="hour_10"></div>
+      </span>
+    </div>
+    <script type="module" src="functions.js"></script>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
