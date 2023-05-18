@@ -493,7 +493,6 @@ async function getWeather() {
       }
     }
     city_info = introduction_info;
-    console.log("Main function getWeather called!");
   } catch (err) {
     console.log(err);
   }
@@ -572,7 +571,9 @@ function handleVisibilityChange() {
   if (document.hidden) {
     clearTimeout(refreshTimeout); // Clear the timeout when the user changes tabs, ensuring no data is fetched.
   } else {
-    getWeather(); // Refresh immediately when user is on the tab app.
+    setTimeout(() => {
+      getWeather()
+    }, 2000) 
     clearTimeout(refreshTimeout); // Clear any existing timeout to make sure we start from scratch.
     refreshTimeout = setTimeout(updateWeather, refreshInterval); // Start the refresh cycle if the user stays on the app.
   }
@@ -582,7 +583,9 @@ document.addEventListener("visibilitychange", handleVisibilityChange);
 
 // If user minimizes or puts browser in the background, stop fetching and updating data:
 function handleWindowFocus() {
-  getWeather(); // Refresh immediately when the window comes into focus
+  setTimeout(() => {
+    getWeather()  // Refresh when the window comes into focus, after a brief delay
+  }, 2000) 
   clearTimeout(refreshTimeout); // Clear any existing timeout
   refreshTimeout = setTimeout(updateWeather, refreshInterval); // Start the refresh cycle if the user stays on the app.
 }
@@ -620,14 +623,19 @@ default_button.addEventListener("click", () => {
 
 map_button.addEventListener("click", () => {
   let map_url = `https://www.openstreetmap.org/#map=14/${latitude}/${longitude}&layers=N`;
+  setTimeout(() => {
   window.open(map_url, "_blank", "noopener noreferrer");
   map_button.blur();
+  }, 400)
 });
 
 let github_button = document.getElementById("github-anchor");
-github_button.addEventListener("click", () => {
-  setTimeout(() => {
+github_button.addEventListener("click", (e) => {
+  e.preventDefault();
   github_button.blur();
+
+  setTimeout(() => {
+  window.open(github_button.href, "_blank", "noopener noreferrer");
   }, 500)
 });
 
@@ -676,7 +684,6 @@ function handleKeyUp(e) {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
 
           for (let i = 0; i < data.results.length; i++) {
             const newCity = document.createElement("div");
