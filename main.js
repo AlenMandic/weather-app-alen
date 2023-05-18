@@ -1,7 +1,7 @@
 /*
 MAIN TO-DO: 
 -----------------------------------------------------------------------------------------------------------------
-- Check and make sure the app doesn't keep infinitely updating itself if the user leaves their browser open but and doesn't fully close it. It should only keep updating while user is there.
+- CURRENTLY WORKING ON: Check and make sure the app doesn't keep infinitely updating itself if the user leaves their browser open but and doesn't fully close it. It should only keep updating while user is there.
  Or even better, detect when the user is and isn't on the page. When they aren't, no updates.
  When they return instantly update, and update every 2 mins if they are there still.
 
