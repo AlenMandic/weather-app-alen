@@ -1,14 +1,13 @@
 /*
 MAIN TO-DO: 
-----------------------------------------------------------------------------------------------------------------------------------------------
 - Replace bad videos.
-- Check design and appearance. Maybe some fade-in animations on first render and search ?
+- App looks fucking amazing on mobile holy shit. But it needs to be bigger. The search bar and dropdown results are too small.
 
 FINAL TASKS:
-- Lighthouse testing and accesibiliy testing, do the full thing to make it a fully fledged app.
-- Upload to github, create a readme aswell detailing app features and purpose.
-  and check if i need a server(prob Node) beacuse of CORS. Upload app to the internet.
-------------------------------------------------------------------------------------------------------------------------
+- Lighthouse testing and accesibiliy testing
+  Check if i need a server(prob Node) beacuse of CORS.
+
+- Upload app to the internet.
 */
 
 import {
@@ -479,7 +478,7 @@ async function getWeather() {
       hourDiv.append(hour_wind);
     }
 
-    // render out hourly information 
+    // render out hourly information
     for (let i = 1; i <= 10; i++) {
       displayHour(our_hour++, document.getElementById(`hour_${i}`));
     }
@@ -546,7 +545,7 @@ document.addEventListener("DOMContentLoaded", () => {
     getWeather();
     
   } else {
-    getWeather(); // default app state.
+    getWeather(); // default app initialization.
   }
 });
 
@@ -554,14 +553,14 @@ document.addEventListener("DOMContentLoaded", () => {
 let refreshInterval = 2 * 60 * 1000; // 2 minutes
 let refreshTimeout;
 
-function clearChildElements() {
+function clearChildElements() { 
   document.querySelectorAll("div.childhour").forEach((child) => {
     child.innerHTML = "";
   });
 }
 
 function updateWeather() {
-  if (!document.hidden) {
+  if (!document.hidden) { //when document becomes visible, timer for updating starts.
     clearChildElements();
     getWeather();
     refreshTimeout = setTimeout(updateWeather, refreshInterval); // Recursive call for the next refresh
