@@ -11,3 +11,4 @@ A personal project of a weather app i made. Uses vanilla JavaScript, CSS and HTM
 - App updates data every 2 minutes automatically
 - Gps button which get's your current device location and displays weather data for it
 - All buttons, searchbar and search results can be navigated with keyboard only ( tab forwards and backwards + enter )
+- Different button animations for mobile and desktop
