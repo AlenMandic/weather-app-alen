@@ -1,10 +1,6 @@
 /*
 MAIN TO-DO: 
------------------------------------------------------------------------------------------------------------------
-- CURRENTLY WORKING ON: Check and make sure the app doesn't keep infinitely updating itself if the user leaves their browser open but and doesn't fully close it. It should only keep updating while user is there.
- Or even better, detect when the user is and isn't on the page. When they aren't, no updates.
- When they return instantly update, and update every 2 mins if they are there still.
-
+----------------------------------------------------------------------------------------------------------------------------------------------
 - Replace bad videos.
 - Check design and appearance. Maybe some fade-in animations on first render and search ?
 
@@ -12,7 +8,7 @@ FINAL TASKS:
 - Lighthouse testing and accesibiliy testing, do the full thing to make it a fully fledged app.
 - Upload to github, create a readme aswell detailing app features and purpose.
   and check if i need a server(prob Node) beacuse of CORS. Upload app to the internet.
------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 */
 
 import {
@@ -483,6 +479,7 @@ async function getWeather() {
       hourDiv.append(hour_wind);
     }
 
+    // render out hourly information 
     for (let i = 1; i <= 10; i++) {
       displayHour(our_hour++, document.getElementById(`hour_${i}`));
     }
@@ -497,13 +494,15 @@ async function getWeather() {
       }
     }
     city_info = introduction_info;
+    console.log("Main function getWeather called!");
   } catch (err) {
     console.log(err);
   }
 }
 
 // Check if the user has a default location set for displaying weather. If they do, load their default city, else initialize default app.
-// Added functionality that app refreshes itself every 2 minutes.
+// Also set basic functionality for smart app refreshing every 2 minutes if user is on the app.
+
 document.addEventListener("DOMContentLoaded", () => {
   let default_user = JSON.parse(localStorage.getItem("defaultLocation"));
 
@@ -545,31 +544,62 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     getWeather();
-
-    function updateWeather() {
-      document.querySelectorAll("div.childhour").forEach((child) => {
-        while (child.firstChild) {
-          child.removeChild(child.firstChild);
-        }
-      });
-      getWeather();
-    }
-
-    setInterval(updateWeather, 120000);
+    
   } else {
     getWeather(); // default app state.
-    function updateWeather() {
-      document.querySelectorAll("div.childhour").forEach((child) => {
-        while (child.firstChild) {
-          child.removeChild(child.firstChild);
-        }
-      });
-      getWeather();
-    }
-
-    setInterval(updateWeather, 120000);
   }
 });
+
+// App refresh functionality.
+let refreshInterval = 2 * 60 * 1000; // 2 minutes
+let refreshTimeout;
+
+function clearChildElements() {
+  document.querySelectorAll("div.childhour").forEach((child) => {
+    child.innerHTML = "";
+  });
+}
+
+function updateWeather() {
+  if (!document.hidden) {
+    clearChildElements();
+    getWeather();
+    refreshTimeout = setTimeout(updateWeather, refreshInterval); // Recursive call for the next refresh
+  }
+}
+
+// If user is on a different tab(not on the app) stop fetching and updating data
+function handleVisibilityChange() {
+  if (document.hidden) {
+    clearTimeout(refreshTimeout); // Clear the timeout when the user changes tabs, ensuring no data is fetched.
+  } else {
+    getWeather(); // Refresh immediately when user is on the tab app.
+    clearTimeout(refreshTimeout); // Clear any existing timeout to make sure we start from scratch.
+    refreshTimeout = setTimeout(updateWeather, refreshInterval); // Start the refresh cycle if the user stays on the app.
+  }
+}
+
+document.addEventListener("visibilitychange", handleVisibilityChange);
+
+// If user minimizes or puts browser in the background, stop fetching and updating data:
+function handleWindowFocus() {
+  getWeather(); // Refresh immediately when the window comes into focus
+  clearTimeout(refreshTimeout); // Clear any existing timeout
+  refreshTimeout = setTimeout(updateWeather, refreshInterval); // Start the refresh cycle if the user stays on the app.
+}
+
+function handleWindowBlur() {
+  clearTimeout(refreshTimeout); // Clear the timeout when the window loses focus, ensuring no data is fetched.
+}
+
+window.addEventListener('focus', handleWindowFocus);
+
+window.addEventListener('blur', handleWindowBlur);
+
+// Initial start of the refresh cycle.
+refreshTimeout = setTimeout(updateWeather, refreshInterval);
+
+
 
 // Allowing the user to select a default location for the app using localstorage. And a button to open up a map showing exact location on a map.
 let default_button = document.getElementById("default_button");
