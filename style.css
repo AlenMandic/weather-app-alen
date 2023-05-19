@@ -191,8 +191,8 @@ width: 350px;
  
  .city-name {
  width: 100%;
-  padding-top: 6px;
-  border-bottom: solid;
+ padding-top: 6px;
+ border-bottom: solid;
  }
  
  #isTyping {
@@ -503,3 +503,73 @@ body {
 
 }
 
+@media only screen and (max-width: 450px) {
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+#main-introduction {
+  font-size: 70px;
+}
+
+#timezone-para {
+  font-size: 30px;
+}
+
+.air {
+  font-size: 24px;
+  margin-top: -40px;
+}
+
+#default_button {
+  font-size: 35px;
+ }
+
+#map_button {
+ font-size: 35px;
+}
+
+#github-button {
+  height: 60px;
+  width: 60px;
+}
+
+.user-input {
+  margin-top: 60px;
+  font-size: 50px;
+}
+
+#input {
+  height: 5rem;
+  width: 650px;
+  font-size: 35px;
+  border-radius: 4px;
+}
+
+.location_img {
+  padding-left: 20px;
+  height: 65px;
+  width: 65px;
+}
+
+.city-card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+  width: 610px;
+  font-size: 35px;
+  height: 70px;
+  background-color: white;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  border-radius: 3px;
+ }
+
+ #isTyping {
+  font-size: 35px;
+ }
+
+}

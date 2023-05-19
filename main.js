@@ -1,7 +1,7 @@
 /*
 MAIN TO-DO: 
 - Replace bad videos.
-- App looks fucking amazing on mobile holy shit. But it needs to be bigger. The search bar and dropdown results are too small.
+- App looks too small on mobile, increase the appearance.
 
 FINAL TASKS:
 - Lighthouse testing and accesibiliy testing
