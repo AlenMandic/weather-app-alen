@@ -1,9 +1,18 @@
 /*
 MAIN TO-DO: 
 
+Fixes left to do on mobile (450 media query):
+- Fix timezone underscore typo
+- Moderate rain showers text not centered correctly
+- Overhaul current conditions card and then increase wind icon 
+- Increase h2 heading sizes
+- Increase hourly info text and image sizes, center part two of heading text correctly
+- Correct green color shade correctly
+
+-------------------------------------------------------------------------------------------------------
 - Lighthouse testing and accesibiliy testing
-  Create a proxy server to host the application on using Node and Express.
-- Upload app to the internet.
+- Create a proxy server to host the application on using Node and Express.
+- Find a host and upload app to the internet.
 */
 
 import {
