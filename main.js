@@ -1,9 +1,6 @@
 /*
 MAIN TO-DO: 
-- Replace bad videos.
-- App looks too small on mobile, increase the appearance.
 
-FINAL TASKS:
 - Lighthouse testing and accesibiliy testing
   Create a proxy server to host the application on using Node and Express.
 - Upload app to the internet.
