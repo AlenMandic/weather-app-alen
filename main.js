@@ -5,8 +5,7 @@ MAIN TO-DO:
 
 FINAL TASKS:
 - Lighthouse testing and accesibiliy testing
-  Check if i need a server(prob Node) beacuse of CORS.
-
+  Create a proxy server to host the application on using Node and Express.
 - Upload app to the internet.
 */
 

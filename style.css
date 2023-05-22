@@ -41,6 +41,7 @@ html {
   margin-top: 5px;
   gap: 1.5rem;
 }
+
 #main-introduction {
  font-size: 32px;
 }
@@ -52,7 +53,7 @@ html {
 h2 {
   margin-top: 37px;
   margin-left: 10px;
-  font-size: 22px;
+  font-size: 40px;
   color: white;
 }
 
@@ -201,8 +202,8 @@ width: 350px;
  }
 
 .weathercode-icon {
-  width: 150px;
-  height: 150px;
+  width: 110px;
+  height: 110px;
 }
 
 .hourcode-icon {
@@ -383,7 +384,7 @@ width: 90px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 2rem;
   color: white;
   width: 100%;
 }
@@ -431,14 +432,22 @@ body {
   min-width: 900px;
 }
 
-.weathercode-icon {
-  width: 100px;
-  height: 100px;
+#main-introduction {
+  margin-top: 15px
 }
 
-.hourcode-icon {
-  width: 100px;
-  height: 100px;
+.current-conditions {
+  gap: 4rem;
+}
+
+.weathercode-icon {
+  width: 200px;
+  height: 200px;
+}
+
+
+.button {
+  margin-top: 15px;
 }
 
 #default_button {
@@ -504,6 +513,10 @@ body {
 }
 
 @media only screen and (max-width: 450px) {
+  body {
+    min-width: 900px;
+  }
+
 .circle {
     width: 50px;
     height: 50px;
@@ -525,15 +538,19 @@ body {
 
 #default_button {
   font-size: 35px;
+  border-radius: 40px;
+  height: 85px;
  }
 
 #map_button {
  font-size: 35px;
+ border-radius: 40px;
+  height: 85px;
 }
 
 #github-button {
-  height: 60px;
-  width: 60px;
+  height: 85px;
+  width: 85px;
 }
 
 .user-input {
@@ -570,6 +587,93 @@ body {
 
  #isTyping {
   font-size: 35px;
+ }
+
+.current-conditions {
+  gap: 3rem;
+}
+
+.current_windspeed_icon {
+  height: 130px;
+  width: 130px;
+}
+
+
+ .current_text_child {
+  font-size: 28px;
+ }
+
+ #weathercode_current_text {
+  font-size: 30px;
+  font-weight: 600;
+ }
+
+ #today-date {
+  font-size: 40px;
+ }
+
+ #tomorow-date {
+  font-size: 40px;
+ }
+
+ #last-date {
+  font-size: 40px;
+ }
+
+ #child_today_minmax {
+  font-size: 35px;
+ }
+
+ #child_tomorow_minmax {
+  font-size: 35px;
+ }
+
+ #child_twodays_minmax {
+  font-size: 35px;
+ }
+
+ #today_two {
+  gap: 4rem;
+ }
+
+ #tomorow_two {
+  gap: 4rem;
+ }
+
+ #twodays_two {
+  gap: 4rem;
+ }
+
+ .child {
+  font-size: 30px;
+ }
+
+ .today_windspeed_icon {
+  width: 120px;
+  height: 120px;
+ }
+
+ .tomorow_windspeed_icon {
+  width: 120px;
+  height: 120px;
+ }
+
+ .twodays_windspeed_icon {
+  width: 120px;
+  height: 120px;
+ }
+
+ .hourly-box {
+  gap: 2rem;
+ }
+
+ .hourly_info {
+  gap: 3.5rem;
+  font-size: 20px;
+ }
+
+ .hour-children {
+  font-size: 25px;
  }
 
 }
