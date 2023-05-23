@@ -6,6 +6,7 @@ A personal project of a weather app i made. Uses vanilla JavaScript, CSS and HTM
 - Fully responsive.
 - Offers current conditions, 3-day forecast and hourly forecast.
 - Search through any city in the world and display weather data for it.
+- Fetch and display data only when the user stopped typing in the searchbar to reduce api calls.
 - Show/hide search results based on the searchbar or search results being focused or not.
 - Set any city/location as your default homepage, or open that location on a map with notes about the location.
 - Gps button which get's your current device location and displays weather data for it.
