@@ -1,6 +1,8 @@
 /*
 MAIN TO-DO: 
 
+This is on branch testing where i need to fix all the bugs below. Branch master remains as stable main version.
+
 Fixes left to do on mobile (450 media query):
 - Fix timezone underscore typo
 - Moderate rain showers text not centered correctly
@@ -464,11 +466,11 @@ async function getWeather() {
         );
         hourDiv.append(hour_weathercode);
       }
+
       hour_precipitation.setAttribute("class", "hour-children");
       hour_precipitation.textContent = `${data.hourly.precipitation_probability[hourIndex]}%`;
       hourDiv.append(hour_precipitation);
 
-      // hide rain amount if it's equal to 0.
       hour_rain.setAttribute("class", "hour-children");
       hour_rain.textContent = `${data.hourly.rain[hourIndex]}mm`;
       hourDiv.append(hour_rain);
@@ -504,8 +506,6 @@ async function getWeather() {
 }
 
 // Check if the user has a default location set for displaying weather. If they do, load their default city, else initialize default app.
-// Also set basic functionality for smart app refreshing every 2 minutes if user is on the app.
-
 document.addEventListener("DOMContentLoaded", () => {
   let default_user = JSON.parse(localStorage.getItem("defaultLocation"));
 
@@ -553,7 +553,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// App refresh functionality.
+// Smart app refresh functionality below.
 let refreshInterval = 2 * 60 * 1000; // 2 minutes
 let refreshTimeout;
 
@@ -579,7 +579,7 @@ function handleVisibilityChange() {
     setTimeout(() => {
       getWeather()
     }, 2000) 
-    clearTimeout(refreshTimeout); // Clear any existing timeout to make sure we start from scratch.
+    clearTimeout(refreshTimeout); // Clear any existing timeout to make sure we start from scratch. With brief delay.
     refreshTimeout = setTimeout(updateWeather, refreshInterval); // Start the refresh cycle if the user stays on the app.
   }
 }
@@ -606,11 +606,9 @@ window.addEventListener('blur', handleWindowBlur);
 // Initial start of the refresh cycle.
 refreshTimeout = setTimeout(updateWeather, refreshInterval);
 
-
-
 // Allowing the user to select a default location for the app using localstorage. And a button to open up a map showing exact location on a map.
-let default_button = document.getElementById("default_button");
-let map_button = document.getElementById("map_button");
+const default_button = document.getElementById("default_button");
+const map_button = document.getElementById("map_button");
 
 default_button.addEventListener("click", () => {
   setTimeout(() => {
@@ -767,6 +765,7 @@ function handleKeyUp(e) {
               document.querySelectorAll("div.city-card").forEach((city) => {
                 city.remove();
               });
+              //get rid of hourly duplicates
               document.querySelectorAll("div.childhour").forEach((child) => {
                 while (child.firstChild) {
                   child.removeChild(child.firstChild);

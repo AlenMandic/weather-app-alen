@@ -177,7 +177,6 @@ width: 350px;
 
 .city-card:focus,
 .city-card:hover {
-  /* Styling when in focus or hovered over */
   background-color: black;
   color: white;
 }
@@ -423,8 +422,10 @@ width: 90px;
 #hour-children-temp {
   font-size: 30px;
 }
+
 /* Mobile devices styling below */
 @media only screen and (max-width: 900px) {
+
 body {
   min-width: 900px;
 }
@@ -509,7 +510,7 @@ body {
 
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 600px) {
   body {
     min-width: 900px;
   }
