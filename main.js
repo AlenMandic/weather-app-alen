@@ -1,17 +1,7 @@
 /*
 MAIN TO-DO: 
+This is on branch testing where we fix bugs and develop further. Branch master remains as stable live version.
 
-This is on branch testing where i need to fix all the bugs below. Branch master remains as stable main version.
-
-Fixes left to do on mobile (450 media query):
-- Fix timezone underscore typo
-- Moderate rain showers text not centered correctly
-- Overhaul current conditions card and then increase wind icon 
-- Increase h2 heading sizes
-- Increase hourly info text and image sizes, center part two of heading text correctly
-- Correct green color shade correctly
-
--------------------------------------------------------------------------------------------------------
 - Lighthouse testing and accesibiliy testing
 - Create a proxy server to host the application on using Node and Express.
 - Find a host and upload app to the internet.
@@ -77,30 +67,39 @@ let today_icon = document.createElement("img");
 let today_date = document.createElement("p");
 let today_minmax = document.createElement("p");
 let today_precipitation = document.createElement("p");
+today_precipitation.classList.add("forecast_text");
 let today_windspeed = document.createElement("p");
+today_windspeed.classList.add("forecast_text");
 let today_windspeed_icon = document.createElement("img");
 today_windspeed_icon.setAttribute("class", "today_windspeed_icon");
 let today_sunriseSunset = document.createElement("p");
+today_sunriseSunset.classList.add("forecast_text");
 
 //tomorow
 let tomorow_icon = document.createElement("img");
 let tomorow_date = document.createElement("p");
 let tomorow_minmax = document.createElement("p");
 let tomorow_precipitation = document.createElement("p");
+tomorow_precipitation.classList.add("forecast_text");
 let tomorow_windspeed = document.createElement("p");
+tomorow_windspeed.classList.add("forecast_text");
 let tomorow_windspeed_icon = document.createElement("img");
 tomorow_windspeed_icon.setAttribute("class", "tomorow_windspeed_icon");
 let tomorow_sunriseSunset = document.createElement("p");
+tomorow_sunriseSunset.classList.add("forecast_text");
 
 //2-days later card
 let last_icon = document.createElement("img");
 let last_date = document.createElement("p");
 let last_minmax = document.createElement("p");
 let last_precipitation = document.createElement("p");
+last_precipitation.classList.add("forecast_text");
 let last_windspeed = document.createElement("p");
+last_windspeed.classList.add("forecast_text");
 let twodays_windspeed_icon = document.createElement("img");
 twodays_windspeed_icon.setAttribute("class", "twodays_windspeed_icon");
 let twodays_sunriseSunset = document.createElement("p");
+twodays_sunriseSunset.classList.add("forecast_text");
 
 async function getWeather() {
   try {
@@ -117,7 +116,12 @@ async function getWeather() {
     const data_air = await response_air.json();
 
     // Display user timezone.
-    timezone_para.textContent = `${data.timezone} ${data.timezone_abbreviation}`;
+    let our_timezone = `${data.timezone} `;
+
+    if(our_timezone.includes("_")) {
+      our_timezone = `${data.timezone} `.replace("_", " ");
+     }
+    timezone_para.textContent = our_timezone + data.timezone_abbreviation;
     main_introduction.textContent = introduction_info;
     main_introduction.appendChild(timezone_para);
 
@@ -126,8 +130,8 @@ async function getWeather() {
 
     document.getElementById("weathercode_current_text").textContent =
       getWeathercodeText(current_weathercode_day);
+      
     //fixed style issue
-
     if (
       document.getElementById("weathercode_current_text").textContent ===
       "Fog" ||
@@ -253,7 +257,7 @@ async function getWeather() {
     document.getElementById("child_today_weathercode").prepend(today_icon);
 
     today_date.setAttribute("id", "today-date");
-    today_date.style.color = "#46c685";
+    today_date.style.color = "rgb(0 240 118)";
     today_date.textContent = "Today";
     document.getElementById("child_today_date").append(today_date);
 
@@ -309,7 +313,7 @@ async function getWeather() {
 
     tomorow_date.setAttribute("id", "tomorow-date");
     tomorow_date.textContent = `${formatDate(data.daily.time[1])}`;
-    tomorow_date.style.color = "#46c685";
+    tomorow_date.style.color = "rgb(0 240 118)";
     document.getElementById("child_tomorow_date").append(tomorow_date);
 
     tomorow_minmax.textContent = `${data.daily.temperature_2m_min[1]}${data.daily_units.temperature_2m_max} / ${data.daily.temperature_2m_max[1]}${data.daily_units.temperature_2m_max}`;
@@ -368,7 +372,7 @@ async function getWeather() {
 
     last_date.setAttribute("id", "last-date");
     last_date.textContent = `${formatDate(data.daily.time[2])}`;
-    last_date.style.color = "#46c685";
+    last_date.style.color = "rgb(0 240 118)";
     document.getElementById("child_twodays_date").append(last_date);
 
     last_minmax.textContent = `${data.daily.temperature_2m_min[2]}${data.daily_units.temperature_2m_max} / ${data.daily.temperature_2m_max[2]}${data.daily_units.temperature_2m_max}`;
@@ -397,11 +401,7 @@ async function getWeather() {
       .append(twodays_sunriseSunset);
 
     let hourly_title = document.getElementById("hourly_title");
-    let extra_info = document.createElement("p");
-    extra_info.textContent = `(At local time ${data.timezone} ${data.timezone_abbreviation})`;
-    extra_info.setAttribute("id", "extra_info");
     hourly_title.textContent = `Hourly forecast`;
-    hourly_title.append(extra_info);
 
     // ----- HOURLY weather data
     let our_hour = currentDay.getHours() + 2;
@@ -557,6 +557,7 @@ document.addEventListener("DOMContentLoaded", () => {
 let refreshInterval = 2 * 60 * 1000; // 2 minutes
 let refreshTimeout;
 
+// once again cleaning up any hourly duplicates which might occur beacuse they are created inside my main weather function.
 function clearChildElements() { 
   document.querySelectorAll("div.childhour").forEach((child) => {
     child.innerHTML = "";
@@ -648,7 +649,7 @@ let searchResultsLoaded = false;
 
 // check if a user is typing in the input or not. Only fetch data once, whenever they stop typing.
 let timer = undefined,
-timeoutVal = 400;
+timeoutVal = 1000;
 
 const input = document.getElementById("input");
 const isTyping = document.getElementById("isTyping");
