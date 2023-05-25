@@ -14,16 +14,16 @@ html {
 }
 
 .circle {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 
 .air {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 16px;
+  gap: 0.5rem;
+  font-size: 21px;
   font-weight: 600;
 }
 
@@ -47,14 +47,13 @@ html {
 }
 
 #timezone-para {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 h2 {
   margin-top: 37px;
   margin-left: 10px;
   font-size: 40px;
-  color: white;
 }
 
 
@@ -111,12 +110,9 @@ h2 {
 }
 
 #hourly_title {
- display: flex;
- gap: 1rem;
-}
-
-#extra_info {
-  font-size: 14px;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
 }
 
 form {
@@ -131,7 +127,7 @@ flex-direction: column;
 justify-content: flex-start;
 gap: 1.5rem;
 align-items: flex-start;
-font-size: 1.2rem;
+font-size: 1.4rem;
 }
 
  #input {
@@ -177,7 +173,6 @@ width: 350px;
 
 .city-card:focus,
 .city-card:hover {
-  /* Styling when in focus or hovered over */
   background-color: black;
   color: white;
 }
@@ -199,8 +194,8 @@ width: 350px;
  }
 
 .weathercode-icon {
-  width: 110px;
-  height: 110px;
+  width: 150px;
+  height: 150px;
 }
 
 .hourcode-icon {
@@ -218,13 +213,17 @@ width: 350px;
 }
 
 #weathercode_current_text {
-  font-size: 18px;
+  font-size: 30px;
 }
 
 .current_windspeed_icon {
   height: 90px;
   width: 90px;
 }
+
+.current_text_child {
+  font-size: 26px;
+ }
 
 #current-video {
   margin-top: 0px;
@@ -254,7 +253,7 @@ width: 350px;
 }
 
 #child_current_weathercode > p {
-  margin-top: -20px;
+  margin-top: -30px;
 }
 
 #child_today_weathercode {
@@ -265,7 +264,7 @@ width: 350px;
 }
 
 #child_today_minmax {
-  font-size: 24px;
+  font-size: 35px;
   font-weight: 600;
 }
 
@@ -275,6 +274,10 @@ width: 350px;
 
 #child_today_weathercode > p {
   margin-top: -20px;
+}
+
+.forecast_text {
+  font-size: 26px;
 }
 
 #child_tomorow_weathercode {
@@ -289,7 +292,7 @@ width: 350px;
 }
 
 #child_tomorow_minmax {
-  font-size: 24px;
+  font-size: 35px;
   font-weight: 600;
 }
 
@@ -309,7 +312,7 @@ width: 350px;
 }
 
 #child_twodays_minmax {
-  font-size: 24px;
+  font-size: 35px;
   font-weight: 600;
 }
 
@@ -381,7 +384,6 @@ width: 90px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2rem;
   color: white;
   width: 100%;
 }
@@ -423,8 +425,10 @@ width: 90px;
 #hour-children-temp {
   font-size: 30px;
 }
+
 /* Mobile devices styling below */
 @media only screen and (max-width: 900px) {
+
 body {
   min-width: 900px;
 }
@@ -509,7 +513,7 @@ body {
 
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 600px) {
   body {
     min-width: 900px;
   }
@@ -519,6 +523,11 @@ body {
     height: 50px;
     border-radius: 50%;
   }
+
+h2 {
+  font-size: 75px;
+  margin-top: 70px;
+}
 
 #main-introduction {
   font-size: 70px;
@@ -548,6 +557,10 @@ body {
 #github-button {
   height: 85px;
   width: 85px;
+}
+
+#my-video {
+  height: 400px;
 }
 
 .user-input {
@@ -588,16 +601,18 @@ body {
 
 .current-conditions {
   gap: 3rem;
+  margin-top: -70px;
 }
 
 .current_windspeed_icon {
   height: 130px;
   width: 130px;
+  scale: 1.2;
 }
 
 
  .current_text_child {
-  font-size: 28px;
+  font-size: 30px;
  }
 
  #weathercode_current_text {
@@ -606,27 +621,27 @@ body {
  }
 
  #today-date {
-  font-size: 40px;
+  font-size: 50px;
  }
 
  #tomorow-date {
-  font-size: 40px;
+  font-size: 50px;
  }
 
  #last-date {
-  font-size: 40px;
+  font-size: 50px;
  }
 
  #child_today_minmax {
-  font-size: 35px;
+  font-size: 44px;
  }
 
  #child_tomorow_minmax {
-  font-size: 35px;
+  font-size: 44px;
  }
 
  #child_twodays_minmax {
-  font-size: 35px;
+  font-size: 44px;
  }
 
  #today_two {
@@ -642,22 +657,26 @@ body {
  }
 
  .child {
-  font-size: 30px;
+  font-size: 25px;
  }
 
  .today_windspeed_icon {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
  }
 
  .tomorow_windspeed_icon {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
  }
 
  .twodays_windspeed_icon {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
+ }
+
+ .forecast_text {
+  font-size: 35px;
  }
 
  .hourly-box {
@@ -665,12 +684,25 @@ body {
  }
 
  .hourly_info {
-  gap: 3.5rem;
+  gap: 4.5rem;
   font-size: 20px;
  }
 
  .hour-children {
-  font-size: 25px;
+  font-size: 35px;
  }
+
+ #hour-children-temp {
+  font-size: 40px;
+ }
+
+ .childhour {
+  gap: 3.5rem;
+ }
+
+ .hourcode-icon {
+  width: 160px;
+  height: 160px;
+}
 
 }
