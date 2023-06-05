@@ -8,7 +8,7 @@ A personal project of a weather app i made. Uses vanilla JavaScript, CSS and HTM
 - Search through any city in the world and display weather, air and general data about it.
 - Fetch and display data only when the user stopped typing in the searchbar to reduce api calls.
 - Show/hide search results based on the searchbar or search results being focused or not.
-- Set any city/location as your default homepage, or open that location on a map with notes about the location.
+- Set any city/location as your default homepage, or open that location on a map.
 - Gps button which get's your current device location and displays weather data for it.
 - All buttons, searchbar and search results can be navigated with keyboard only ( tab forwards and backwards + enter ).
 - Different button animations for mobile and desktop.
