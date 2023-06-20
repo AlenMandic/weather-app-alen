@@ -1,5 +1,4 @@
 # Weather-app
-NOT FINISHED OR DEPLOYED YET. NEED TO CREATE A PROXY SERVER WITH NODE, THEN I WILL HOST IT.
 
 A personal project of a weather app i made. Uses vanilla JavaScript, CSS and HTML.
 
