@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/CSS/style.css">
 <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
@@ -13,6 +13,9 @@
 <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
+<meta name="description" content="Weather Application which displays a 3-day and hourly weather forecast, and allows you to search weather data for any city in the world.">
+<script type="module" src="/JavaScript/functions.js" defer></script>
+<script type="module" src="/JavaScript/main.js" defer></script>
   </head>
   <body>
   <div class ="introduction" id="introduction">
@@ -35,51 +38,47 @@
       </div>
       <div  id="github-div">
         <a href="https://github.com/AlenMandic/weather-app-alen" tabindex="1" id="github-anchor" target="_blank">
-          <img src="./images/misc/github-mark.png" alt="Link to my GitHub." id="github-button">
+          <img src="./assets/images/misc/github-mark-white.png" alt="Link to my GitHub." id="github-button" title="My GitHub">
         </a>
       </div>
     </div>
-  </div>
-  <div class="search-bar">
-    <form class="user-input">
-        <label for="city">Search cities to display weather</label>
-        <div class = "input_wrapper">
-          <input type="text" name="city" id="input" placeholder="Type in a city" autocomplete="off" tabindex="1">
-          <img class="location_img" id="location" src="./images/misc/gps.png" tabindex="0" role="button" type="button">
+    <div class="search-bar">
+      <form class="user-input">
+          <label for="input">Search cities to display weather</label>
+          <div class = "input_wrapper">
+            <input type="text" name="city" id="input" placeholder="Type in a city" autocomplete="off" tabindex="1">
+            <img class="location_img" id="location" src="./assets/images/misc/gps.png" tabindex="0" role="button" type="button" title="Get your location" alt="GPS image which servers as a button for getting your location.">
+          </div>
+          <p id="isTyping"></p>
+      </form>
+    </div>
+    <div class="city-cards" id="city-cards">
+    </div>
+      <h2 id="current_h2">Current conditions</h2>
+      <div class="current-conditions" id="current-conditions">
+        <div class="child" id="child_current_weathercode">
+          <p id="weathercode_current_text" class="current_text_child"></p>
         </div>
-        <p id="isTyping"></p>
-    </form>
-  </div>
-  <div class="city-cards" id="city-cards">
-  </div>
-</div>
-    <h2 style="color: rgb(0 240 118)" id="current_h2">Current conditions</h2>
-    <div class="current-conditions" id="current-conditions">
-      <div class="child" id="child_current_weathercode">
-        <p id="weathercode_current_text" class="current_text_child"></p>
-      </div>
-      <div class="child" id="child_current_temp">
-        <p id="current-temp"></p>
-      </div>
-      <div class="child" id="child_current_windspeed">
-        <p id="current-windspeed" class="current_text_child"></p>
-      </div>
-      <div class="child" id="child_current_humidity">
-        <p id="current-humidity" class="current_text_child"></p>
-      </div>
-      <div class="child" id="child_current_visibility">
-        <p id="current-visibility" class="current_text_child"></p>
-      </div>
+        <div class="child" id="child_current_temp">
+          <p id="current-temp" style="font-weight: bold"></p>
+        </div>
+        <div class="child" id="child_current_windspeed">
+          <p id="current-windspeed" class="current_text_child"></p>
+        </div>
+        <div class="child" id="child_current_humidity">
+          <p id="current-humidity" class="current_text_child"></p>
+        </div>
     </div>
-    <div class="current-conditions" id="current-video">
-      <video id="my-video" class="video-js" preload="auto" width="100%" height="100%" muted autoplay loop>
-        <source type="video/mp4">
-      </video>
-    </div>
-
-  <hr>
-  <hr>
+      <div class="current-conditions" id="current-video">
+        <video id="my-video" class="video-js" preload="auto" width="100%" height="100%" muted autoplay loop>
+          <source type="video/mp4">
+        </video>
+      </div>
+      <hr class="hr">
+      <hr class="hr">
+  </div>
   <h2 style="color: white">3-day forecast</h2>
+
   <!--Today data part one- Icon and Date -->
     <div class="forecast" id="today_one">
       <div class="child" id="child_today_date"></div>
@@ -87,13 +86,13 @@
         <p id="weathercode_today_text" style="scale: 1.5"></p>
       </div>
       </div>
-  <!--Today data part two- Weather info -->
 
+  <!--Today data part two- Weather info -->
     <div class="forecast" id="today_two">
-      <div class="child" id="child_today_minmax"></div>
-      <div class="child" id="child_today_precipitation"></div>
-      <div class="child" id="child_today_windspeed"></div>
-      <div class="child" id="child_today_sunrise"></div>
+      <div class="child" id="child_today_minmax" title="Lowest and highestest temperature"></div>
+      <div class="child" id="child_today_precipitation" title="Amount of rainfall"></div>
+      <div class="child" id="child_today_windspeed" title="Windspeed"></div>
+      <div class="child" id="child_today_sunrise" title="Sunrise and sunset"></div>
       </div>
     </div>
 
@@ -106,10 +105,10 @@
       </div>
   <!--Tomorow data part two- Weather info-->
   <div class="forecast" id="tomorow_two">
-    <div class="child" id="child_tomorow_minmax"></div>
-    <div class="child" id="child_tomorow_precipitation"></div>
-    <div class="child" id="child_tomorow_windspeed"></div>
-    <div class="child" id="child_tomorow_sunrise"></div>
+    <div class="child" id="child_tomorow_minmax" title="Lowest and highestest temperature"></div>
+    <div class="child" id="child_tomorow_precipitation" title="Amount of rainfall"></div>
+    <div class="child" id="child_tomorow_windspeed" title="Windspeed"></div>
+    <div class="child" id="child_tomorow_sunrise" title="Sunrise and sunset"></div>
   </div>
 </div>
  
@@ -122,14 +121,15 @@
       </div>
   <!--Twodays data part two- Weather info -->
   <div class="forecast" id="twodays_two">
-    <div class="child" id="child_twodays_minmax"></div>
-    <div class="child" id="child_twodays_precipitation"></div>
-    <div class="child" id="child_twodays_windspeed"></div>
-    <div class="child" id="child_twodays_sunrise"></div>
+    <div class="child" id="child_twodays_minmax" title="Lowest and highestest temperature"></div>
+    <div class="child" id="child_twodays_precipitation" title="Amount of rainfall"></div>
+    <div class="child" id="child_twodays_windspeed" title="Windspeed"></div>
+    <div class="child" id="child_twodays_sunrise" title="Sunrise and sunset"></div>
   </div>
 </div>
+
  <!--Hourly weather info -->
-  <h2 id="hourly_title" style="color: rgb(0 240 118)"></h2>
+  <h2 id="hourly_title" style="color: white">Hourly forecast</h2>
     <div class="hourly-box">
       <span class="hourly_info hour">
         <div class="hourly_info_child"><p>Time</p></div>
@@ -170,7 +170,5 @@
         <div class="childhour" id="hour_10"></div>
       </span>
     </div>
-    <script type="module" src="functions.js"></script>
-    <script type="module" src="main.js"></script>
   </body>
 </html>
