@@ -152,7 +152,7 @@ async function getWeather() {
 
       weathercode_icon.setAttribute(
             "src",
-            `./assets/images/night/${current_weathercode_night}.svg`
+            `./images/night/${current_weathercode_night}.svg`
           );
           document
             .getElementById("child_current_weathercode")
@@ -161,7 +161,7 @@ async function getWeather() {
 
       weathercode_icon.setAttribute(
             "src",
-            `./assets/images/weathercode/${current_weathercode_day}.svg`
+            `./images/weathercode/${current_weathercode_day}.svg`
           );
           document
             .getElementById("child_current_weathercode")
@@ -182,7 +182,7 @@ async function getWeather() {
       .append(current_windspeed);
     current_windspeed_icon.setAttribute(
       "src",
-      `./assets/images/wind/${getBeaufortWind(data.current_weather.windspeed)}.svg`
+      `./images/wind/${getBeaufortWind(data.current_weather.windspeed)}.svg`
     );
     document
       .getElementById("child_current_windspeed")
@@ -190,7 +190,7 @@ async function getWeather() {
 
     source.setAttribute(
       "src",
-      `./assets/videos/${data.current_weather.weathercode}.mp4`
+      `./videos/${data.current_weather.weathercode}.mp4`
     );
     myVideo.load();
     myVideo.play();
@@ -234,7 +234,7 @@ async function getWeather() {
     today_icon.setAttribute("class", "weathercode-icon");
     today_icon.setAttribute(
       "src",
-      `./assets/images/weathercode/${today_weathercode}.svg`
+      `./images/weathercode/${today_weathercode}.svg`
     );
     document.getElementById("child_today_weathercode").prepend(today_icon);
 
@@ -255,7 +255,7 @@ async function getWeather() {
     document.getElementById("child_today_windspeed").append(today_windspeed);
     today_windspeed_icon.setAttribute(
       "src",
-      `./assets/images/wind/${getBeaufortWind(data.daily.windspeed_10m_max[0])}.svg`
+      `./images/wind/${getBeaufortWind(data.daily.windspeed_10m_max[0])}.svg`
     );
     document
       .getElementById("child_today_windspeed")
@@ -289,7 +289,7 @@ async function getWeather() {
     tomorow_icon.setAttribute("class", "weathercode-icon");
     tomorow_icon.setAttribute(
       "src",
-      `./assets/images/weathercode/${tomorow_weathercode}.svg`
+      `./images/weathercode/${tomorow_weathercode}.svg`
     );
     document.getElementById("child_tomorow_weathercode").prepend(tomorow_icon);
 
@@ -312,7 +312,7 @@ async function getWeather() {
       .append(tomorow_windspeed);
     tomorow_windspeed_icon.setAttribute(
       "src",
-      `./assets/images/wind/${getBeaufortWind(data.daily.windspeed_10m_max[1])}.svg`
+      `./images/wind/${getBeaufortWind(data.daily.windspeed_10m_max[1])}.svg`
     );
     document
       .getElementById("child_tomorow_windspeed")
@@ -348,7 +348,7 @@ async function getWeather() {
     last_icon.setAttribute("class", "weathercode-icon");
     last_icon.setAttribute(
       "src",
-      `./assets/images/weathercode/${last_weathercode}.svg`
+      `./images/weathercode/${last_weathercode}.svg`
     );
     document.getElementById("child_twodays_weathercode").prepend(last_icon);
 
@@ -369,7 +369,7 @@ async function getWeather() {
     document.getElementById("child_twodays_windspeed").append(last_windspeed);
     twodays_windspeed_icon.setAttribute(
       "src",
-      `./assets/images/wind/${getBeaufortWind(data.daily.windspeed_10m_max[2])}.svg`
+      `./images/wind/${getBeaufortWind(data.daily.windspeed_10m_max[2])}.svg`
     );
     document
       .getElementById("child_twodays_windspeed")
@@ -429,7 +429,7 @@ async function getWeather() {
         // it's daytime
         hour_weathercode.setAttribute(
           "src",
-          `./assets/images/weathercode/${get_hourcode_day}.svg`
+          `./images/weathercode/${get_hourcode_day}.svg`
         );
         hourDiv.append(hour_weathercode);
       } else if (
@@ -439,14 +439,14 @@ async function getWeather() {
         // it's daytime
         hour_weathercode.setAttribute(
           "src",
-          `./assets/images/weathercode/${get_hourcode_day}.svg`
+          `./images/weathercode/${get_hourcode_day}.svg`
         );
         hourDiv.append(hour_weathercode);
       } else {
         // it's nighttime
         hour_weathercode.setAttribute(
           "src",
-          `./assets/images/night/${get_hourcode_night}.svg`
+          `./images/night/${get_hourcode_night}.svg`
         );
         hourDiv.append(hour_weathercode);
       }
