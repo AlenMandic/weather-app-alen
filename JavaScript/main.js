@@ -98,12 +98,12 @@ twodays_sunriseSunset.classList.add("forecast_text");
 async function getWeather() {
   try {
     // call and fetch open-meteo api with the desired latitude-longitude and timezone.
-    const response = await fetch(`/.netlify/functions/api_proxy/route1?latitude=${latitude}&longitude=${longitude}&user_timezone=${user_timezone}`);
+    const response = await fetch(`./.netlify/functions/api_proxy/route1?latitude=${latitude}&longitude=${longitude}&user_timezone=${user_timezone}`);
 
     const data = await response.json();
 
     // get air quality info (european standard)
-    const response_air = await fetch(`/.netlify/functions/api_proxy/route2?latitude=${latitude}&longitude=${longitude}&user_timezone=${user_timezone}`);
+    const response_air = await fetch(`./.netlify/functions/api_proxy/route2?latitude=${latitude}&longitude=${longitude}&user_timezone=${user_timezone}`);
     
     const data_air = await response_air.json();
 
@@ -509,7 +509,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Run the geocoding api for city name, get first result, extract population and elevation and update it.
     let city_name = city_info.split(",")[0];
     fetch(
-      `/.netlify/functions/api_proxy/route3?city_name=${city_name}`
+      `./.netlify/functions/api_proxy/route3?city_name=${city_name}`
     )
       .then((response_city) => response_city.json())
       .then((data_city) => {
@@ -670,7 +670,7 @@ function handleKeyUp(e) {
       // handle user data and render results
       let prefix = input.value.toLowerCase();
 
-fetch(`/.netlify/functions/api_proxy/route4?prefix=${prefix}`)
+fetch(`./.netlify/functions/api_proxy/route4?prefix=${prefix}`)
         .then((response) => response.json())
         .then((data) => {
 
