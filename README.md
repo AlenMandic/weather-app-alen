@@ -11,7 +11,7 @@ LIVE app: https://weather-forecast-app-one.netlify.app/
 - Fully responsive.
 - Offers current conditions, 3-day forecast and hourly forecast.
 - Weather icons show if it's day or night
-- Search through any city in the world and display weather, air and general data about it.
+- Search through any city in the world and display weather, air and general information about it.
 - User type detection: fetch and display data only when the user stopped typing in the searchbar to reduce api calls.
 - Show/hide search results by tapping out of the search input.
 - Set any city/location as your default homepage, or open that location on a map.
