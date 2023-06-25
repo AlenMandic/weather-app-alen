@@ -1,8 +1,8 @@
 // Turn open-meteo date format into shorter more readable info. --(Turns "2023-04-05" into April 05).
 export function formatDate(date) {
-    const parts = date.split("-");
-    const month = parts[1];
-    const day = parts[2];
+    let parts = date.split("-");
+    let month = parts[1];
+    let day = parts[2];
   
     let result = "";
   
