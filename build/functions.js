@@ -3,53 +3,29 @@ export function formatDate(date) {
     let parts = date.split("-");
     let month = parts[1];
     let day = parts[2];
-  
-    let result = "";
-  
-    switch (month) {
-      case "01":
-        result = `January ${day}`;
-        return result;
-      case "02":
-        result = `February ${day}`;
-        return result;
-      case "03":
-        result = `March ${day}`;
-        return result;
-      case "04":
-        result = `April ${day}`;
-        return result;
-      case "05":
-        result = `May ${day}`;
-        return result;
-      case "06":
-        result = `June ${day}`;
-        return result;
-      case "07":
-        result = `July ${day}`;
-        return result;
-      case "08":
-        result = `August ${day}`;
-        return result;
-      case "09":
-        result = `September ${day}`;
-        return result;
-      case "10":
-        result = `October ${day}`;
-        return result;
-      case "11":
-        result = `November ${day}`;
-        return result;
-      case "12":
-        result = `December ${day}`;
-        return result;
-    }
+
+    const monthLookupTable = {
+      "01": "January",
+      "02": "February",
+      "03": "March",
+      "04": "April",
+      "05": "May",
+      "06": "June",
+      "07": "July",
+      "08": "August",
+      "09": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    };
+
+    return `${monthLookupTable[month]} ${day}`;
   }
 
 // Creating textual information about current weather status.
 export function getWeathercodeText(weathercode) {
     let weathercode_status = "";
-  
+
     switch (weathercode) {
       case 0:
         weathercode_status = "Clear sky";
@@ -221,7 +197,7 @@ export function getAirQuality(aqi) {
   } else if (aqi >= 60 && aqi <= 80) {
     result =  "Air quality: Poor";
     circle_color = "#954040";
-  } else if (aqi >= 80 && aqi <= 100) {  
+  } else if (aqi >= 80 && aqi <= 100) {
     result =  "Air quality: Very Poor";
     circle_color = "red";
   } else {
