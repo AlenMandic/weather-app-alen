@@ -1,5 +1,6 @@
 // Turn open-meteo date format into shorter more readable info. --(Turns "2023-04-05" into April 05).
 export function formatDate(date) {
+
   let parts = date.split("-");
   let month = parts[1];
   let day = parts[2];
@@ -24,96 +25,43 @@ export function formatDate(date) {
 
 // Creating textual information about current weather status.
 export function getWeathercodeText(weathercode) {
-    let weathercode_status = "";
+  let weathercode_status = "";
 
-    switch (weathercode) {
-      case 0:
-        weathercode_status = "Clear sky";
-        break;
-      case 1:
-        weathercode_status = "Mainly clear";
-        break;
-      case 2:
-        weathercode_status = "Partly cloudy";
-        break;
-      case 3:
-        weathercode_status = "Overcast";
-        break;
-      case 45:
-        weathercode_status = "Fog";
-        break;
-      case 48:
-        weathercode_status = "Depositing rime fog";
-        break;
-      case 51:
-        weathercode_status = "Light drizzle";
-        break;
-      case 53:
-        weathercode_status = "Moderate drizzle";
-        break;
-      case 55:
-        weathercode_status = "Dense drizzle";
-        break;
-      case 56:
-        weathercode_status = "Light freezing drizzle";
-        break;
-      case 57:
-        weathercode_status = "Dense freezing drizzle";
-        break;
-      case 61:
-        weathercode_status = "Slight rain";
-        break;
-      case 63:
-        weathercode_status = "Moderate rain";
-        break;
-      case 65:
-        weathercode_status = "Heavy intensity rain";
-        break;
-      case 66:
-        weathercode_status = "Light freezing rain";
-        break;
-      case 67:
-        weathercode_status = "Dense freezing rain";
-        break;
-      case 71:
-        weathercode_status = "Slight snowfall";
-        break;
-      case 73:
-        weathercode_status = "Moderate snowfall";
-        break;
-      case 75:
-        weathercode_status = "Heavy snowfall";
-        break;
-      case 77:
-        weathercode_status = "Snow grains";
-        break;
-      case 80:
-        weathercode_status = "Slight rain showers";
-        break;
-      case 81:
-        weathercode_status = "Moderate rain showers";
-        break;
-      case 82:
-        weathercode_status = "Violent rain showers";
-        break;
-      case 85:
-        weathercode_status = "Light snow showers";
-        break;
-      case 86:
-        weathercode_status = "Dense snow showers";
-        break;
-      case 95:
-        weathercode_status = "Thunderstorm";
-        break;
-      case 96:
-        weathercode_status = "Slight hail thunderstorm";
-        break;
-      case 99:
-        weathercode_status = "Heavy hail thunderstorm";
-        break;
-    }
-    return weathercode_status;
-  }
+  const weatherLookupTable = {
+    0: "Clear sky",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48: "Depositing rime fog",
+    51: "Light drizzle",
+    53: "Moderate drizzle",
+    55: "Dense drizzle",
+    56: "Light freezing drizzle",
+    57: "Dense freezing drizzle",
+    61: "Slight rain",
+    63: "Moderate rain",
+    65: "Heavy intensity rain",
+    66: "Light freezing rain",
+    67: "Dense freezing rain",
+    71: "Slight snowfall",
+    73: "Moderate snowfall",
+    75: "Heavy snowfall",
+    77: "Snow grains",
+    80: "Slight rain showers",
+    81: "Moderate rain showers",
+    82: "Violent rain showers",
+    85: "Light snow showers",
+    86: "Dense snow showers",
+    95: "Thunderstorm",
+    96: "Slight hail thunderstorm",
+    99: "Heavy hail thunderstorm"
+  };
+
+  weathercode_status = weatherLookupTable[weathercode] || "";
+
+  return weathercode_status;
+}
 
   // simplify getting nighttime weathercodes.
   export function getNightWeather(weathercode) {
