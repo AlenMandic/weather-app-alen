@@ -139,6 +139,12 @@ async function getWeather() {
       "0px";
     };
 
+    if(document.getElementById("weathercode_current_text").textContent.length > 16) {
+      document.getElementById("weathercode_current_text").style.paddingLeft = "30px";
+    } else {
+      document.getElementById("weathercode_current_text").style.paddingLeft = "0px";
+    }
+
     let current_weathercode_night;
     let weathercode_night = data.current_weather.weathercode.toString();
 
