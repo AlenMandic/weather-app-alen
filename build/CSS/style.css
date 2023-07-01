@@ -139,6 +139,7 @@ font-size: 1.2rem;
 border-style: groove;
 border-radius: 3px;
 width: 350px;
+font-weight: 600;
 }
 
 .input_wrapper {
@@ -167,7 +168,8 @@ width: 350px;
   gap: 7px;
   width: 350px;
   height: 45px;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 600;
   background-color: white;
   color: black;
   margin-bottom: -4px;
