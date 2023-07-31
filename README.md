@@ -5,7 +5,7 @@ A personal project of a weather app i made. Uses vanilla JavaScript, CSS and HTM
 
 Hosted on Netlify. I used Netlify's serverless functions to simulate back-end functionality to avoid CORS issues.
 
-LIVE app: https://weather-forecast-app-one.netlify.app/
+# LIVE app: https://weather-forecast-app-one.netlify.app/
 
 # Features:
 - Fully responsive.
