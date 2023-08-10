@@ -10,7 +10,8 @@ Hosted on Netlify. I used Netlify's serverless functions to simulate back-end fu
 # Features:
 - Fully responsive.
 - Offers current conditions, 3-day forecast and hourly forecast.
-- Weather icons show if it's day or night
+- Weather icons show if it's day or night.
+- Shows a video of what the current weather type looks like.
 - Search through any city in the world and display weather, air and general information about it.
 - User type detection: fetch and display data only when the user stopped typing in the searchbar to reduce api calls.
 - Show/hide search results by tapping out of the search input.
