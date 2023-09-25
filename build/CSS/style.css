@@ -553,7 +553,10 @@ body {
 
 h2 {
   font-size: 75px;
-  margin-top: 70px;
+}
+
+#current_h2 {
+  padding-bottom: 50px;
 }
 
 #main-introduction {
@@ -736,6 +739,11 @@ h2 {
 
  .childhour {
   gap: 3.5rem;
+ }
+
+ .weathercode-icon {
+   width: 240px;
+   height: 240px;
  }
 
  .hourcode-icon {
