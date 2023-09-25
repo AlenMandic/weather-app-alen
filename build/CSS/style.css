@@ -19,8 +19,8 @@ html {
 }
 
 .circle {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
 }
 
@@ -28,14 +28,26 @@ html {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 600;
+}
+
+#current_air_id {
+  font-size: 14px;
+}
+
+#introduction_elevation {
+  font-size: 14px
+}
+
+#introduction_population {
+  font-size: 14px
 }
 
 .info_ {
   width: 100%;
   display: flex;
-  margin-top: -45px;
+  margin-top: -30px;
   gap: 3rem;
 }
 
@@ -48,17 +60,15 @@ html {
 }
 
 #main-introduction {
- font-size: 32px;
+ font-size: 21px;
 }
 
 #timezone-para {
-  font-size: 18px;
+  font-size: 12px;
 }
 
 h2 {
-  margin-top: 37px;
-  margin-left: 10px;
-  font-size: 40px;
+  font-size: 26px;
 }
 
 
@@ -71,6 +81,10 @@ h2 {
   cursor: pointer; 
   font-size: 13px;
   transform: scale(1);
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #default_button:focus,
@@ -87,6 +101,10 @@ h2 {
   cursor: pointer; 
   font-size: 13px;
   transform: scale(1);
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #map_button:focus,
@@ -95,8 +113,8 @@ h2 {
 }
 
 #github-button {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
 }
 
 #github-div:hover {
@@ -120,22 +138,18 @@ h2 {
   align-items: flex-end;
 }
 
-form {
-  margin-top: 20px;
-}
-
 .user-input {
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
 gap: 1.5rem;
 align-items: flex-start;
-font-size: 1.4rem;
+font-size: 1.1rem;
 }
 
  #input {
-height: 2.2rem;
-font-size: 1.2rem;
+height: 1.8rem;
+font-size: 1rem;
 border-style: groove;
 border-radius: 3px;
 width: 350px;
@@ -150,8 +164,8 @@ font-weight: 600;
  
  .location_img {
   transition: transform 0.2s ease-in-out;
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 35px;
   cursor: pointer;
   transform: scale(1);
  }
@@ -167,8 +181,8 @@ font-weight: 600;
   justify-content: flex-start;
   gap: 7px;
   width: 350px;
-  height: 45px;
-  font-size: 20px;
+  height: 35px;
+  font-size: 17px;
   font-weight: 600;
   background-color: white;
   color: black;
@@ -194,18 +208,18 @@ font-weight: 600;
  }
  
  #isTyping {
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 10px;
  }
 
 .weathercode-icon {
-  width: 150px;
-  height: 150px;
+  width: 110px;
+  height: 110px;
 }
 
 .hourcode-icon {
-  width: 110px;
-  height: 110px;
+  width: 80px;
+  height: 80px;
 }
 
 .current-conditions {
@@ -217,16 +231,16 @@ font-weight: 600;
 }
 
 #weathercode_current_text {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .current_windspeed_icon {
-  height: 90px;
-  width: 90px;
+  height: 70px;
+  width: 70px;
 }
 
 .current_text_child {
-  font-size: 26px;
+  font-size: 16px;
   color: white;
  }
 
@@ -238,7 +252,7 @@ font-weight: 600;
   margin-left: -5px;
   border-radius: 8px;
   width: 100%;
-  height: 300px;
+  height: 250px;
   object-fit: fill;
 }
 
@@ -253,7 +267,7 @@ font-weight: 600;
 
 #current-temp {
   padding-right: 5px;
-  scale: 2.5;
+  scale: 2;
 }
 
 .child {
@@ -273,17 +287,17 @@ font-weight: 600;
 #child_today_weathercode {
   flex-direction: column;
   align-items: center;
-  margin-left: 15%;
-  width: 300px;
+  width: 33%;
 }
 
 #child_today_minmax {
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 600;
 }
 
 #child_today_date {
-  font-size: 26px;
+  font-size: 23px;
+  width: 33%;
 }
 
 #child_today_weathercode > p {
@@ -291,14 +305,13 @@ font-weight: 600;
 }
 
 .forecast_text {
-  font-size: 26px;
+  font-size: 22px;
 }
 
 #child_tomorow_weathercode {
   flex-direction: column;
   align-items: center;
-  margin-left: 10%;
-  width: 300px;
+  width: 33%;
 }
 
 #child_tomorow_weathercode > p {
@@ -306,19 +319,19 @@ font-weight: 600;
 }
 
 #child_tomorow_minmax {
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 600;
 }
 
 #child_tomorow_date {
-  font-size: 26px;
+  font-size: 23px;
+  width: 33%;
 }
 
 #child_twodays_weathercode {
   flex-direction: column;
   align-items: center;
-  margin-left: 10%;
-  width: 300px;
+  width: 33%;
 }
 
 #child_twodays_weathercode > p {
@@ -326,27 +339,28 @@ font-weight: 600;
 }
 
 #child_twodays_minmax {
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 600;
 }
 
 #child_twodays_date {
-  font-size: 26px;
+  font-size: 23px;
+  width: 33%;
 }
 
 .today_windspeed_icon {
-width: 90px;
-height: 90px;
+  width: 70px;
+  height: 70px;
 }
 
 .tomorow_windspeed_icon {
-  width: 90px;
-height: 90px;
+  width: 70px;
+  height: 70px;
 }
 
 .twodays_windspeed_icon {
-  width: 90px;
-height: 90px;
+  width: 70px;
+  height: 70px;
 }
 
 .forecast {
@@ -406,7 +420,7 @@ height: 90px;
 }
 
 .hour {
-  height: 85px;
+  height: 75px;
   width: 100%;
 }
 
@@ -459,12 +473,6 @@ body {
 .current-conditions {
   gap: 6rem;
 }
-
-.weathercode-icon {
-  width: 200px;
-  height: 200px;
-}
-
 
 .button {
   margin-top: 15px;
@@ -561,6 +569,18 @@ h2 {
   margin-top: -40px;
 }
 
+#current_air_id {
+  font-size: 20px;
+}
+
+#introduction_elevation {
+  font-size: 20px
+}
+
+#introduction_population {
+  font-size: 20px
+}
+
 #default_button {
   font-size: 35px;
   border-radius: 40px;
@@ -579,7 +599,7 @@ h2 {
 }
 
 #my-video {
-  height: 400px;
+  height: 500px;
 }
 
 .user-input {

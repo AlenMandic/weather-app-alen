@@ -29,6 +29,7 @@ current_population.textContent = "Population: 8.5M";
 
 // append the air qual elements to a parent div, inside introductory info.
 let current_air = document.createElement("p");
+current_air.setAttribute("id", "current_air_id");
 let current_air_icon = document.createElement("div");
 current_air_icon.setAttribute("class", "circle");
 current_air_icon.setAttribute("title", "Air Quality");
