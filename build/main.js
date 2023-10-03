@@ -97,6 +97,10 @@ let twodays_sunriseSunset = document.createElement("p");
 twodays_sunriseSunset.classList.add("forecast_text");
 
 async function getWeather() {
+
+  const nightHours = ['22', '23', '00', '01', '02', '03', '04,', '05'];
+  const paddingTopConditions = ["Fog", "Clear sky", "Mainly clear"];
+
   try {
     // call and fetch open-meteo api with the desired latitude-longitude and timezone.
     const response = await fetch(`./.netlify/functions/api_proxy/route1?latitude=${latitude}&longitude=${longitude}&user_timezone=${user_timezone}`);
@@ -105,15 +109,15 @@ async function getWeather() {
 
     // get air quality info (european standard)
     const response_air = await fetch(`./.netlify/functions/api_proxy/route2?latitude=${latitude}&longitude=${longitude}&user_timezone=${user_timezone}`);
-    
+
     const data_air = await response_air.json();
 
     // Display user timezone.
     let our_timezone = `${data.timezone} `;
 
-    if(our_timezone.includes("_")) {
+    if (our_timezone.includes("_")) {
       our_timezone = `${data.timezone} `.replace("_", " ");
-     }
+    }
     timezone_para.textContent = our_timezone + data.timezone_abbreviation;
     main_introduction.textContent = introduction_info;
     main_introduction.appendChild(timezone_para);
@@ -121,30 +125,11 @@ async function getWeather() {
     // "current conditions" card content, checking for nighttime
     let current_weathercode_day = data.current_weather.weathercode;
 
-    document.getElementById("weathercode_current_text").textContent =
-      getWeathercodeText(current_weathercode_day);
-      
-    //fixed style issue
-    if (
-      document.getElementById("weathercode_current_text").textContent ===
-      "Fog" ||
-      document.getElementById("weathercode_current_text").textContent ===
-      "Clear sky" ||
-      document.getElementById("weathercode_current_text").textContent ===
-      "Mainly clear"
-    ) {
-      document.getElementById("weathercode_current_text").style.paddingTop =
-        "15px";
-    } else {
-      document.getElementById("weathercode_current_text").style.paddingTop =
-      "0px";
-    };
+    const weatherCodeCurrentTextElement = document.getElementById("weathercode_current_text");
+    weatherCodeCurrentTextElement.textContent = getWeathercodeText(current_weathercode_day);
 
-    if(document.getElementById("weathercode_current_text").textContent.length > 16) {
-      document.getElementById("weathercode_current_text").style.paddingLeft = "30px";
-    } else {
-      document.getElementById("weathercode_current_text").style.paddingLeft = "0px";
-    }
+    weatherCodeCurrentTextElement.style.paddingTop = paddingTopConditions.includes(weatherCodeCurrentTextElement.textContent) ? "15px" : "0px";
+    weatherCodeCurrentTextElement.style.paddingLeft = weatherCodeCurrentTextElement.textContent.length > 16 ? "30px" : "0px";
 
     let current_weathercode_night;
     let weathercode_night = data.current_weather.weathercode.toString();
@@ -155,25 +140,17 @@ async function getWeather() {
     let current_time = `${data.current_weather.time.slice(11)[0]}${data.current_weather.time.slice(11)[1]
       }`;
 
-    if(current_time === "22" || current_time ==="23" || current_time ==="00" || current_time ==="01" || current_time ==="02" || current_time ==="03" || current_time ==="04" || current_time ==="05") {
+    let imgSrc = nightHours.includes(current_time)
+      ? `./images/night/${current_weathercode_night}.svg`
+      : `./images/weathercode/${current_weathercode_day}.svg`;
 
-      weathercode_icon.setAttribute(
-            "src",
-            `./images/night/${current_weathercode_night}.svg`
-          );
-          document
-            .getElementById("child_current_weathercode")
-            .prepend(weathercode_icon);
-    } else {
-
-      weathercode_icon.setAttribute(
-            "src",
-            `./images/weathercode/${current_weathercode_day}.svg`
-          );
-          document
-            .getElementById("child_current_weathercode")
-            .prepend(weathercode_icon);
-    }
+    weathercode_icon.setAttribute(
+      "src",
+      `${imgSrc}`
+    );
+    document
+      .getElementById("child_current_weathercode")
+      .prepend(weathercode_icon);
 
     current_temp.textContent = `${data.current_weather.temperature} ${data.daily_units.temperature_2m_max}`;
     document.getElementById("child_current_temp").prepend(current_temp);
@@ -202,7 +179,7 @@ async function getWeather() {
     myVideo.load();
     myVideo.play();
 
-    //setting air quality information. Catching night case when time starts with 0
+    //setting air quality information. Catching nighttime edge case when time starts with 0
     let current_air_qual = getAirQuality(
       data_air.hourly.european_aqi[current_time]
     );
@@ -221,22 +198,12 @@ async function getWeather() {
 
     // today card. DAILY 3 day forecast.
     let today_weathercode = data.daily.weathercode[0];
-    document.getElementById("weathercode_today_text").textContent =
-      getWeathercodeText(data.daily.weathercode[0]);
 
-    if (
-      document.getElementById("weathercode_today_text").textContent === "Fog" ||
-      document.getElementById("weathercode_today_text").textContent ===
-      "Clear sky" ||
-      document.getElementById("weathercode_today_text").textContent ===
-      "Mainly clear"
-    ) {
-      document.getElementById("weathercode_today_text").style.paddingTop =
-        "15px";
-    } else {
-      document.getElementById("weathercode_today_text").style.paddingTop =
-      "0px";
-    };
+    const weatherCodeTodayTextElement = document.getElementById("weathercode_today_text");
+    weatherCodeTodayTextElement.textContent = getWeathercodeText(today_weathercode);
+
+    weatherCodeTodayTextElement.style.paddingTop = paddingTopConditions.includes(weatherCodeTodayTextElement.textContent) ? "15px" : "0px";
+    weatherCodeTodayTextElement.style.paddingLeft = weatherCodeTodayTextElement.textContent.length > 16 ? "30px" : "0px";
 
     today_icon.setAttribute("class", "weathercode-icon");
     today_icon.setAttribute(
@@ -275,23 +242,12 @@ async function getWeather() {
 
     // creating the tomorow card.
     let tomorow_weathercode = data.daily.weathercode[1];
-    document.getElementById("weathercode_tomorow_text").textContent =
-      getWeathercodeText(data.daily.weathercode[1]);
 
-    if (
-      document.getElementById("weathercode_tomorow_text").textContent ===
-      "Fog" ||
-      document.getElementById("weathercode_tomorow_text").textContent ===
-      "Clear sky" ||
-      document.getElementById("weathercode_tomorow_text").textContent ===
-      "Mainly clear"
-    ) {
-      document.getElementById("weathercode_tomorow_text").style.paddingTop =
-        "15px";
-    } else {
-      document.getElementById("weathercode_tomorow_text").style.paddingTop =
-      "0px";
-    };
+    const weatherCodeTomorowTextElement = document.getElementById("weathercode_tomorow_text");
+    weatherCodeTomorowTextElement.textContent = getWeathercodeText(tomorow_weathercode);
+
+    weatherCodeTomorowTextElement.style.paddingTop = paddingTopConditions.includes(weatherCodeTomorowTextElement.textContent) ? "15px" : "0px";
+    weatherCodeTomorowTextElement.style.paddingLeft = weatherCodeTomorowTextElement.textContent.length > 16 ? "30px" : "0px";
 
     tomorow_icon.setAttribute("class", "weathercode-icon");
     tomorow_icon.setAttribute(
@@ -334,23 +290,12 @@ async function getWeather() {
 
     // in 2 days card
     let last_weathercode = data.daily.weathercode[2];
-    document.getElementById("weathercode_twodays_text").textContent =
-      getWeathercodeText(data.daily.weathercode[2]);
 
-    if (
-      document.getElementById("weathercode_twodays_text").textContent ===
-      "Fog" ||
-      document.getElementById("weathercode_twodays_text").textContent ===
-      "Clear sky" ||
-      document.getElementById("weathercode_twodays_text").textContent ===
-      "Mainly clear"
-    ) {
-      document.getElementById("weathercode_twodays_text").style.paddingTop =
-        "15px";
-    } else {
-      document.getElementById("weathercode_twodays_text").style.paddingTop =
-      "0px";
-    };
+    const weatherCodeTwoDaysTextElement = document.getElementById("weathercode_twodays_text");
+    weatherCodeTwoDaysTextElement.textContent = getWeathercodeText(last_weathercode);
+
+    weatherCodeTwoDaysTextElement.style.paddingTop = paddingTopConditions.includes(weatherCodeTwoDaysTextElement.textContent) ? "15px" : "0px";
+    weatherCodeTwoDaysTextElement.style.paddingLeft = weatherCodeTwoDaysTextElement.textContent.length > 16 ? "30px" : "0px";
 
     last_icon.setAttribute("class", "weathercode-icon");
     last_icon.setAttribute(
@@ -494,9 +439,8 @@ async function getWeather() {
     city_info = introduction_info;
 
   } catch (err) {
-    console.log(err);
+    alert(err);
   }
-
 }
 
 // Check if the user has a default location set for displaying weather. If they do, load their default city, else initialize default app.
@@ -505,10 +449,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (default_user) {
     // if default exists, call getWeather() with the updates co-ords and city name. get coords and city_info from localstorage
-    let defaultLocation = JSON.parse(localStorage.getItem("defaultLocation"));
-    city_info = defaultLocation.city_info;
-    latitude = defaultLocation.latitude;
-    longitude = defaultLocation.longitude;
+    city_info = default_user.city_info;
+    latitude = default_user.latitude;
+    longitude = default_user.longitude;
     introduction_info = city_info;
     let user_default_population = "";
     let user_default_elevation = "";
@@ -552,7 +495,7 @@ let refreshInterval = 2 * 60 * 1000; // 2 minutes
 let refreshTimeout;
 
 // Defining the function which cleans up any hourly duplicates which might occur beacuse they are created inside my main weather function.
-function clearHourElements() { 
+function clearHourElements() {
   document.querySelectorAll("div.childhour").forEach((child) => {
     child.innerHTML = "";
   });
@@ -573,7 +516,7 @@ function handleVisibilityChange() {
   } else {
     setTimeout(() => {
       getWeather()
-    }, 2000) 
+    }, 2000)
     clearTimeout(refreshTimeout); // Clear any existing timeout to make sure we start from scratch. With brief delay.
     refreshTimeout = setTimeout(updateWeather, refreshInterval); // Start the refresh cycle anew if the user stays on the app.
   }
@@ -585,7 +528,7 @@ document.addEventListener("visibilitychange", handleVisibilityChange);
 function handleWindowFocus() {
   setTimeout(() => {
     getWeather()  // Refresh when the window comes into focus, after a brief delay
-  }, 2000) 
+  }, 2000)
   clearTimeout(refreshTimeout); // Clear any existing timeout
   refreshTimeout = setTimeout(updateWeather, refreshInterval); // Start the refresh cycle if the user stays on the app.
 }
@@ -598,15 +541,14 @@ window.addEventListener('focus', handleWindowFocus);
 
 window.addEventListener('blur', handleWindowBlur);
 
-// Initial, default start of the recursive refresh cycle.
+// Initial, default start of the recursive refresh cycle. Refreshes data every 2 minutes.
 refreshTimeout = setTimeout(updateWeather, refreshInterval);
 
-// Allowing the user to select a default location for the app using localstorage. And a button to open up a map showing exact location on a map.
+// Allowing the user to select a default 'home' location for the app using localstorage. And a button to open up a map showing exact location on a map.
 const default_button = document.getElementById("default_button");
 const map_button = document.getElementById("map_button");
 
 default_button.addEventListener("click", () => {
-  setTimeout(() => {
     const confirmed = confirm(
       `Do you want to set ${city_info} as your default location?`
     );
@@ -616,14 +558,13 @@ default_button.addEventListener("click", () => {
       alert("Default location set!");
     }
     default_button.blur();
-  }, 100);
 });
 
 map_button.addEventListener("click", () => {
   let map_url = `https://www.openstreetmap.org/#map=14/${latitude}/${longitude}`;
   setTimeout(() => {
-  window.open(map_url, "_blank", "noopener noreferrer");
-  map_button.blur();
+    window.open(map_url, "_blank", "noopener noreferrer");
+    map_button.blur();
   }, 400)
 });
 
@@ -633,7 +574,7 @@ github_button.addEventListener("click", (e) => {
   github_button.blur();
 
   setTimeout(() => {
-  window.open(github_button.href, "_blank", "noopener noreferrer");
+    window.open(github_button.href, "_blank", "noopener noreferrer");
   }, 500)
 });
 
@@ -643,7 +584,7 @@ let searchResultsLoaded = false;
 
 // check if a user is typing in the input or not. Only fetch data once, whenever they stop typing.
 let timer = undefined,
-timeoutVal = 1000;
+  timeoutVal = 1000;
 
 const input = document.getElementById("input");
 const isTyping = document.getElementById("isTyping");
@@ -677,7 +618,7 @@ function handleKeyUp(e) {
       // handle user data and render results
       let prefix = input.value.toLowerCase();
 
-fetch(`./.netlify/functions/api_proxy/route4?prefix=${prefix}`)
+      fetch(`./.netlify/functions/api_proxy/route4?prefix=${prefix}`)
         .then((response) => response.json())
         .then((data) => {
 
@@ -762,15 +703,13 @@ fetch(`./.netlify/functions/api_proxy/route4?prefix=${prefix}`)
               cityCards_exist = false;
             }
           }
-
-          // below is the full functionality for hiding/showing search bar results based on input focus and ensuring we can tab-cycle through everything, including the cities correctly.
+          // below is the full functionality for hiding/showing search bar results based on input focus and ensuring we can tab-cycle through everything
           cityCards_exist = true;
           searchResultsLoaded = true;
           let lastFocusedElement = null;
           let input_focused = false;
 
           const cityCards = document.querySelectorAll("div.city-card");
-          // functionality of the search bar to hide and show elements based on focus.
           cityCards.forEach((cityCard) => {
             cityCard.addEventListener("focus", () => {
               lastFocusedElement = cityCard;
@@ -820,9 +759,6 @@ fetch(`./.netlify/functions/api_proxy/route4?prefix=${prefix}`)
     }
   }, timeoutVal);
 }
-document.querySelectorAll("city-card").forEach((city) => {
-  city.remove();
-});
 
 // get the location of user when he clicks on gps image element using navigator geolocation with permission
 let user_location = document.getElementById("location");
@@ -836,7 +772,7 @@ function getUserLocation() {
 
     latitude = user_latitude;
     longitude = user_longitude;
-    introduction_info = `Your location at ${latitude} / ${longitude}`;
+    introduction_info = `Your location at ${latitude.toFixed(2)} / ${longitude.toFixed(2)}`;
     clearHourElements();
     getWeather();
     current_population.textContent = "Couldn't find population";
@@ -850,15 +786,9 @@ function getUserLocation() {
   // Now we finally call the navigator method. if user device doesn't support geolocation( geolocation isn't present in global object )
   if (!navigator.geolocation) {
     alert("Error: Geolocation is not supported by your browser");
-  } else {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
   }
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
-user_location.addEventListener("focus", () => {
-  setTimeout(() => {
-    user_location.blur();
-  }, 1500)
-})
 
 // while gps element has focus and enter is pressed, run getUserLocation function.
 user_location.addEventListener("keydown", function (e) {
