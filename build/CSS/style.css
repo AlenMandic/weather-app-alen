@@ -6,7 +6,7 @@
 
 html {
   font-family: 'Geologica Auto', sans-serif;
-  background-color: black;
+  background: linear-gradient(to right, rgb(30 32 30), rgb(33 33 49));
 }
 
 .introduction {
@@ -462,6 +462,10 @@ font-weight: 600;
 /* Mobile devices styling below */
 @media only screen and (max-width: 900px) {
 
+html {
+  min-width: 950px;
+}
+
 body {
   min-width: 900px;
 }
@@ -541,15 +545,12 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-  body {
-    min-width: 950px;
-  }
 
 .circle {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-  }
+}
 
 h2 {
   font-size: 75px;
@@ -558,7 +559,6 @@ h2 {
 #current_h2 {
   padding-bottom: 50px;
 }
-
 #main-introduction {
   font-size: 70px;
 }
@@ -641,7 +641,7 @@ h2 {
  }
 
 .current-conditions {
-  gap: 6rem;
+  gap: 3rem;
   margin-top: -70px;
 }
 
@@ -650,8 +650,6 @@ h2 {
   width: 130px;
   scale: 1.2;
 }
-
-
  .current_text_child {
   font-size: 30px;
  }
