@@ -1,11 +1,5 @@
-@font-face {
-  font-family: 'Geologica Auto';
-  src: url('/fonts/Geologica_Auto-Thin.ttf') format('truetype');
-  font-display: swap;
-}
-
 html {
-  font-family: 'Geologica Auto', sans-serif;
+  font-family: sans-serif;
   background: linear-gradient(to right, rgb(30 32 30), rgb(33 33 49));
 }
 
